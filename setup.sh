@@ -34,7 +34,5 @@ echo "Sym-Linking Config Files"
 stow -v */
 echo " "
 
-omarchy-refresh-config hypr/bindings.conf
-
 echo "Installing Packages"
 yay -S --noconfirm --needed brave ghostty zed obsidian-bin discord libreoffice-fresh stow syncthing-bin starship

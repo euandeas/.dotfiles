@@ -30,9 +30,11 @@ omarchy-theme-install https://github.com/euandeas/omarchy-flexoki-dark-theme.git
 echo "Flexoki Dark Theme installed."
 echo " "
 
+yay -S --noconfirm --needed stow
+
 echo "Sym-Linking Config Files"
 stow -v */
 echo " "
 
 echo "Installing Packages"
-yay -S --noconfirm --needed brave ghostty zed obsidian-bin discord libreoffice-fresh stow syncthing-bin starship
+yay -S --noconfirm --needed brave ghostty zed obsidian-bin discord libreoffice-fresh syncthing-bin starship

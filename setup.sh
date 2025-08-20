@@ -38,4 +38,4 @@ git restore .
 echo " "
 
 echo "Installing Packages"
-yay -S --noconfirm --needed brave ghostty zed obsidian-bin discord libreoffice-fresh syncthing-bin starship
+yay -S --noconfirm --needed brave ghostty zed obsidian-bin vesktop libreoffice-fresh syncthing-bin starship

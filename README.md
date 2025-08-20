@@ -10,5 +10,5 @@ Clone this repository to your home directory:
 cd ~
 git clone https://github.com/euandeas/.dotfiles
 cd .dotfiles
-./install.sh
+./setup.sh
 ```

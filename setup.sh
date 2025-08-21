@@ -12,30 +12,40 @@ check_sudo() {
 }
 
 check_sudo
-echo " "
+echo
 echo "Starting setup..."
-echo " "
+echo
 
 echo "Configuring DNS:"
 cat ~/.dotfiles/resolved.conf
 sudo cp ~/.dotfiles/resolved.conf /etc/systemd/
 sudo systemctl restart systemd-resolved
-echo " "
+echo
 
 omarchy-theme-install https://github.com/euandeas/omarchy-flexoki-light-theme.git >/dev/null 2>&1
 echo "Flexoki Light Theme installed."
-echo " "
+echo
 
 omarchy-theme-install https://github.com/euandeas/omarchy-flexoki-dark-theme.git >/dev/null 2>&1
 echo "Flexoki Dark Theme installed."
-echo " "
-
+echo
 yay -S --noconfirm --needed stow
 
 echo "Sym-Linking Config Files"
 stow --adopt -v */
 git restore .
-echo " "
+echo
 
-echo "Installing Packages"
-yay -S --noconfirm --needed brave ghostty zed obsidian-bin vesktop libreoffice-fresh syncthing-bin starship
+
+echo "Installing Default Packages"
+yay -S --noconfirm --needed brave ghostty zed obsidian-bin vesktop libreoffice-fresh syncthing-bin starship flatpak proton-vpn-gtk-app
+yay -R --noconfirm chromium
+echo
+
+
+read -p "Install Gaming Packages? (Y/n): " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+    yay -S --noconfirm --needed steam
+    flatpak install flathub com.usebottles.bottles -y
+    echo
+fi

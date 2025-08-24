@@ -38,7 +38,7 @@ echo
 
 
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave ghostty zed obsidian-bin vesktop libreoffice-fresh syncthing-bin starship flatpak proton-vpn-gtk-app
+yay -S --noconfirm --needed brave ghostty zed obsidian-bin vesktop libreoffice-fresh syncthing-bin starship flatpak proton-vpn-gtk-app localsend-bin
 yay -R --noconfirm chromium
 echo
 

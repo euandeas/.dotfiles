@@ -37,9 +37,13 @@ git restore .
 echo
 
 
+echo "Removing Some Omarchy Default Packages"
+yay -R --noconfirm omarchy-chromium 1password-beta 1password-cli kdenlive signal-desktop typora pinta
+omarchy-webapp-remove
+echo
+
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave-bin ghostty zed obsidian vesktop libreoffice-fresh syncthing starship flatpak proton-vpn-gtk-app localsend
-yay -R --noconfirm chromium
+yay -S --noconfirm --needed brave-bin ghostty-git zed vesktop syncthing flatpak proton-vpn-gtk-app
 echo
 
 

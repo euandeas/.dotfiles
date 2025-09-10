@@ -43,7 +43,7 @@ omarchy-webapp-remove
 echo
 
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave-bin ghostty-git zed vesktop syncthing flatpak proton-vpn-gtk-app
+yay -S --noconfirm --needed brave-bin ghostty-git zed vesktop syncthing flatpak proton-vpn-gtk-app ttf-adwaita-mono-nerd
 echo
 
 

@@ -36,20 +36,18 @@ stow --adopt -v */
 git restore .
 echo
 
-
 echo "Removing Some Omarchy Default Packages"
 yay -R --noconfirm omarchy-chromium 1password-beta 1password-cli kdenlive signal-desktop typora pinta
 omarchy-webapp-remove
 echo
 
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave-bin ghostty-git zed vesktop syncthing flatpak proton-vpn-gtk-app ttf-adwaita-mono-nerd
+yay -S --noconfirm --needed brave-bin ghostty zed vesktop syncthing flatpak proton-vpn-gtk-app ttf-adwaita-mono-nerd
 echo
-
 
 read -p "Install Gaming Packages? (Y/n): " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
-    yay -S --noconfirm --needed steam
-    flatpak install flathub com.usebottles.bottles -y
-    echo
+  yay -S --noconfirm --needed steam
+  flatpak install flathub com.usebottles.bottles -y
+  echo
 fi

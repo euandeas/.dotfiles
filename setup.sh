@@ -42,7 +42,7 @@ omarchy-webapp-remove
 echo
 
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave-bin ghostty zed vesktop syncthing flatpak proton-vpn-gtk-app ttf-adwaita-mono-nerd
+yay -S --noconfirm --needed brave-bin ghostty zed vesktop syncthing flatpak ttf-adwaita-mono-nerd
 echo
 
 read -p "Install Gaming Packages? (Y/n): " -n 1 -r

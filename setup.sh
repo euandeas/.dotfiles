@@ -37,12 +37,12 @@ git restore .
 echo
 
 echo "Removing Some Omarchy Default Packages"
-yay -R --noconfirm omarchy-chromium 1password-beta 1password-cli kdenlive signal-desktop typora pinta
+yay -R --noconfirm omarchy-chromium 1password-beta 1password-cli kdenlive signal-desktop typora pinta aether
 omarchy-webapp-remove
 echo
 
 echo "Installing Default Packages"
-yay -S --noconfirm --needed brave-bin ghostty zed vesktop syncthing flatpak ttf-adwaita-mono-nerd
+yay -S --noconfirm --needed vulkan-radeon brave-bin ghostty zed vesktop syncthing flatpak ttf-adwaita-mono-nerd
 echo
 
 read -p "Install Gaming Packages? (Y/n): " -n 1 -r

@@ -1,6 +1,6 @@
 # .dotfiles
 
-My personal dotfiles configuration, primarily designed for use with [Omarchy](https://omarchy.org/).
+My personal dotfiles configuration, primarily designed for use with fedora and dms.
 
 ## Installation
 
@@ -10,5 +10,5 @@ Clone this repository to your home directory:
 cd ~
 git clone https://github.com/euandeas/.dotfiles
 cd .dotfiles
-./setup.sh
+./install.sh
 ```

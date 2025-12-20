@@ -10,7 +10,7 @@ sudo systemctl disable NetworkManager-wait-online.service
 # Plymouth Setup
 # -----------------------------
 sudo dnf install -y plymouth-system-theme
-sudo plymouth-set-default-theme bgrt
+sudo plymouth-set-default-theme -R spinner
 
 # -----------------------------
 # Greetd Autologin

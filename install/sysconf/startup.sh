@@ -15,16 +15,6 @@ sudo plymouth-set-default-theme bgrt
 # -----------------------------
 # Greetd Autologin
 # -----------------------------
-#sudo mkdir -p /etc/greetd/
-#sudo tee /etc/greetd/config.toml >/dev/null <<EOF
-#[terminal]
-#vt = 1
-
-#[initial_session]
-#command = "niri-session"
-#user = "euandeas"
-#EOF
-
 sudo dnf copr enable avengemedia/danklinux -y
 sudo dnf install dms-greeter -y
 dms greeter enable

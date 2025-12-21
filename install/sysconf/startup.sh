@@ -10,6 +10,12 @@ sudo systemctl disable NetworkManager-wait-online.service
 # Plymouth Setup
 # -----------------------------
 sudo dnf install -y plymouth-system-theme
+sudo sed -i \
+  -e 's/^BackgroundStartColor=.*/BackgroundStartColor=0x100f0f/' \
+  -e 's/^BackgroundEndColor=.*/BackgroundEndColor=0x100f0f/' \
+  -e 's/^ProgressBarBackgroundColor=.*/ProgressBarBackgroundColor=0x282726/' \
+  -e 's/^ProgressBarForegroundColor=.*/ProgressBarForegroundColor=0xcecdc3/' \
+  "/usr/share/plymouth/themes/spinner/spinner.plymouth"
 sudo plymouth-set-default-theme -R spinner
 
 # -----------------------------

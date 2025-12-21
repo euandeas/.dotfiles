@@ -9,7 +9,7 @@ sudo systemctl disable NetworkManager-wait-online.service
 # -----------------------------
 # Plymouth Setup
 # -----------------------------
-sudo dnf install -y -q plymouth-system-theme
+sudo dnf install -yq plymouth-system-theme
 sudo sed -i \
   -e 's/^BackgroundStartColor=.*/BackgroundStartColor=0x100f0f/' \
   -e 's/^BackgroundEndColor=.*/BackgroundEndColor=0x100f0f/' \
@@ -22,7 +22,7 @@ sudo plymouth-set-default-theme -R spinner
 # Greetd Autologin
 # -----------------------------
 sudo dnf copr enable avengemedia/danklinux -y
-sudo dnf install dms-greeter -y -q
+sudo dnf install dms-greeter -yq
 dms greeter enable
 dms greeter sync
 

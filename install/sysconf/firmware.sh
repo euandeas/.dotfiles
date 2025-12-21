@@ -5,7 +5,7 @@
 # -----------------------------
 fwupdmgr refresh --force
 fwupdmgr get-updates
-fwupdmgr update -y
+fwupdmgr update -y || { rc=$?; [[ $rc -ne 2 ]] && exit "$rc"; }
 
 gum style \
   --foreground 2 \

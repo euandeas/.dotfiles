@@ -123,7 +123,7 @@
   "weatherEnabled": false,
   "networkPreference": "ethernet",
   "vpnLastConnected": "",
-  "iconTheme": "System Default",
+  "iconTheme": "Papirus-Dark",
   "launcherLogoMode": "os",
   "launcherLogoCustomPath": "",
   "launcherLogoColorOverride": "",

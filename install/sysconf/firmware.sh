@@ -3,9 +3,11 @@
 # -----------------------------
 # Update firmware
 # -----------------------------
-fwupdmgr refresh --force
-fwupdmgr get-updates
-fwupdmgr update -y || true
+set +e
+sudo fwupdmgr refresh --force
+sudo fwupdmgr get-updates
+sudo fwupdmgr update
+set -e
 
 gum style \
   --foreground 2 \

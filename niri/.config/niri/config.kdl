@@ -24,9 +24,13 @@ input {
     touchpad {
     }
     mouse {
+        accel-speed 0
+        accel-profile "flat"
     }
     trackpoint {
     }
+
+    focus-follows-mouse max-scroll-amount="0%"
 }
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.

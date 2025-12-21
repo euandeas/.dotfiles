@@ -8,7 +8,7 @@ sudo dnf config-manager addrepo --overwrite --from-repofile=https://brave-browse
 wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.3-1.noarch.rpm"
 sudo dnf install ./protonvpn-stable-release-1.0.3-1.noarch.rpm -y -q
 rm ./protonvpn-stable-release-1.0.3-1.noarch.rpm
-sudo dnf check-update --refresh || true
+sudo dnf makecache --refresh
 
 # -----------------------------
 # DNF

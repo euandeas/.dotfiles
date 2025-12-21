@@ -14,7 +14,6 @@ sudo dnf update @core -y
 # Enable Flatpak
 # -----------------------------
 sudo dnf install -y -q flatpak
-flatpak remote-delete fedora --force || true
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak repair
 flatpak update -y

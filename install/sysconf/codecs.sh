@@ -4,8 +4,8 @@
 # Multimedia Codecs
 # -----------------------------
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
-sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y
-sudo dnf update @sound-and-video -y
+sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y -q
+sudo dnf update @sound-and-video -y -q
 
 # -----------------------------
 # HW Accelerated Codecs

@@ -1,6 +1,6 @@
 source "$DOTS_INSTALL/sysconf/dns.sh"
 source "$DOTS_INSTALL/sysconf/dnf.sh"
 source "$DOTS_INSTALL/sysconf/repos.sh"
-#source "$DOTS_INSTALL/sysconf/firmware.sh"
+source "$DOTS_INSTALL/sysconf/firmware.sh"
 source "$DOTS_INSTALL/sysconf/codecs.sh"
 source "$DOTS_INSTALL/sysconf/startup.sh"

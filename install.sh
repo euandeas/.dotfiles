@@ -13,16 +13,28 @@ if ! sudo -v; then
 fi
 fi
 
-sudo dnf install -y gum
+sudo dnf install -y -q gum
 
-#new_hostname=$(gum input --placeholder "Enter the new hostname")
-#sudo hostnamectl set-hostname "$new_hostname"
+new_hostname=$(gum input --placeholder "Enter the new hostname")
+sudo hostnamectl set-hostname "$new_hostname"
 
-#git_name=$(gum input --placeholder "Enter git username")
-#git config --global user.name "$git_name"
+git_name=$(git config --global --get user.name)
 
-#git_email=$(gum input --placeholder "Enter git email")
-#git config --global user.email "$git_email"
+if [[ -z "$git_name" ]]; then
+  git_name=$(gum input --placeholder "Enter git username")
+  git config --global user.name "$git_name"
+else
+  echo "Git username already set: $git_name"
+fi
+
+git_email=$(git config --global --get user.email)
+
+if [[ -z "$git_email" ]]; then
+  git_email=$(gum input --placeholder "Enter git email")
+  git config --global user.email "$git_email"
+else
+  echo "Git email already set: $git_email"
+fi
 
 # Install
 source "$DOTS_INSTALL/sysconf/all.sh"

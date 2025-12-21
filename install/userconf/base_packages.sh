@@ -26,4 +26,4 @@ done < "$DOTS_INSTALL/flatpak.packages"
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Base packages installed"
+  "Base packages installed"

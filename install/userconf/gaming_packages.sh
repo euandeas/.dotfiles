@@ -12,4 +12,4 @@ fi
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Gaming packages installed"
+  "Gaming packages installed"

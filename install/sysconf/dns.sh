@@ -15,4 +15,4 @@ sudo systemctl restart systemd-resolved
 gum style \
   --foreground 2 \
   --bold \
-  "✔ DNS settings applied"
+  "DNS settings applied"

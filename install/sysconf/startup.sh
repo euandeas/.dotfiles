@@ -36,4 +36,4 @@ EOF
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Startup configuration applied"
+  "Startup configuration applied"

@@ -6,11 +6,11 @@ set -eEo pipefail
 export DOTS_INSTALL="$HOME/.dotfiles/install"
 
 if ! sudo -n true 2>/dev/null; then
-echo "This script requires sudo privileges."
-if ! sudo -v; then
-    echo "Failed to obtain sudo privileges."
-    exit 1
-fi
+    echo "This script requires sudo privileges."
+    if ! sudo -v; then
+        echo "Failed to obtain sudo privileges."
+        exit 1
+    fi
 fi
 
 sudo dnf install -y -q gum
@@ -43,4 +43,4 @@ source "$DOTS_INSTALL/userconf/all.sh"
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Installation completed"
+  "Installation completed"

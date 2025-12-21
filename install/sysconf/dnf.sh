@@ -20,4 +20,4 @@ sudo systemctl enable --now dnf-automatic.timer
 gum style \
   --foreground 2 \
   --bold \
-  "✔ DNF settings applied"
+  "DNF settings applied"

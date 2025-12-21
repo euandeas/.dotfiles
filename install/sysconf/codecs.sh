@@ -17,4 +17,4 @@ sudo dnf swap mesa-vulkan-drivers mesa-vulkan-drivers-freeworld -y
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Codecs installed"
+  "Codecs installed"

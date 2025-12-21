@@ -14,4 +14,4 @@ fc-cache -fv
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Dotfiles installed"
+  "Dotfiles installed"

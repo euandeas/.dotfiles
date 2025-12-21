@@ -22,4 +22,4 @@ flatpak update -y
 gum style \
   --foreground 2 \
   --bold \
-  "✔ Repositories enabled"
+  "Repositories enabled"

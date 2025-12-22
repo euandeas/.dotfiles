@@ -110,6 +110,6 @@ set colored-stats on
 EOF
 
 export BAT_THEME=ansi
-export EDITOR="zeditor"
+export EDITOR="zed"
 
 eval "$(starship init bash)"

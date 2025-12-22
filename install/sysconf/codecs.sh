@@ -5,7 +5,7 @@
 # -----------------------------
 sudo dnf4 group install multimedia -yq
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
-sudo dnf upgrade @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -yq --skip-unavailable
+sudo dnf upgrade @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -yq
 sudo dnf group install -yq sound-and-video
 
 # -----------------------------

@@ -229,7 +229,9 @@
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
   "screenPreferences": {
-    "dock": ["all"]
+    "dock": [
+      "all"
+    ]
   },
   "showOnLastDisplay": {
     "dock": false
@@ -240,7 +242,9 @@
       "name": "Main Bar",
       "enabled": true,
       "position": 0,
-      "screenPreferences": ["all"],
+      "screenPreferences": [
+        "all"
+      ],
       "showOnLastDisplay": true,
       "leftWidgets": [
         {
@@ -257,7 +261,9 @@
           "enabled": true
         }
       ],
-      "centerWidgets": ["clock"],
+      "centerWidgets": [
+        "clock"
+      ],
       "rightWidgets": [
         {
           "id": "music",

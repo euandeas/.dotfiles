@@ -13,7 +13,7 @@ if ! sudo -n true 2>/dev/null; then
     fi
 fi
 
-sudo dnf install -y -q gum
+sudo dnf install -yq gum
 
 new_hostname=$(gum input --placeholder "Enter the new hostname")
 sudo hostnamectl set-hostname "$new_hostname"

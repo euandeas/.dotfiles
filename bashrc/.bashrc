@@ -47,7 +47,7 @@ if command -v zoxide &> /dev/null; then
 fi
 
 open() {
-  xdg-open "$@" >/dev/null 2>&1 &
+  dms open "$@"
 }
 
 # Directories

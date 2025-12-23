@@ -111,5 +111,3 @@ EOF
 
 export BAT_THEME=ansi
 export EDITOR="zed"
-
-eval "$(starship init bash)"

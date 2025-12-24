@@ -38,12 +38,12 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "DP-1" {
+/-output "DP-1" {
     mode "2560x1440@180.002"
     position x=0 y=0
     variable-refresh-rate on-demand=true
 }
-output "HDMI-A-1" {
+/-output "HDMI-A-1" {
     mode "1920x1080@60"
     position x=2560 y=0
 }

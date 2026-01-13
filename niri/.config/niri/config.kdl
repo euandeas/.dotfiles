@@ -117,7 +117,6 @@ overview {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 environment {
   XDG_CURRENT_DESKTOP "niri"
 }
@@ -233,3 +232,6 @@ include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
+include "dms/cursor.kdl"
+include "dms/outputs.kdl"
+include "dms/layout.kdl"

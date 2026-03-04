@@ -12,6 +12,8 @@ DNSOverTLS=opportunistic
 EOF
 
 sudo systemctl restart systemd-resolved
+sudo nmcli connection modify enp11s0 ipv4.ignore-auto-dns yes
+sudo nmcli con up enp11s0
 
 gum style \
   --foreground 2 \

@@ -201,7 +201,7 @@
   "appPickerViewMode": "grid",
   "filePickerUsageHistory": {},
   "sortAppsAlphabetically": true,
-  "appLauncherGridColumns": 4,
+  "appLauncherGridColumns": 5,
   "spotlightCloseNiriOverview": true,
   "spotlightSectionViewModes": {
     "apps": "grid"

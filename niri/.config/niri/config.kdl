@@ -18,19 +18,62 @@ gestures {
 input {
     keyboard {
         xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+
+            // For example:
+            // layout "us,ru"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+
+            // If this section is empty, niri will fetch xkb settings
+            // from org.freedesktop.locale1. You can control these using
+            // localectl set-x11-keymap.
         }
+
+        // Enable numlock on startup, omitting this setting disables it.
         numlock
     }
+
+    // Next sections include libinput settings.
+    // Omitting settings disables them, or leaves them at their default values.
+    // All commented-out settings here are examples, not defaults.
     touchpad {
+        // off
+        tap
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
+        natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "two-finger"
+        // disabled-on-external-mouse
     }
     mouse {
+        // off
+        // natural-scroll
         accel-speed 0
         accel-profile "flat"
+        // scroll-method "no-scroll"
     }
     trackpoint {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // middle-emulation
     }
 
-    focus-follows-mouse max-scroll-amount="50%"
+    // Uncomment this to make the mouse warp to the center of newly focused windows.
+    // warp-mouse-to-focus
+
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    focus-follows-mouse max-scroll-amount="0%"
 }
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
@@ -38,12 +81,12 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "DP-1" {
+/-output "DP-1" {
     mode "2560x1440@180.002"
     position x=0 y=0
     variable-refresh-rate on-demand=true
 }
-output "HDMI-A-1" {
+/-output "HDMI-A-1" {
     mode "1920x1080@60"
     position x=2560 y=0
 }
@@ -183,13 +226,18 @@ window-rule {
     open-floating false
 }
 window-rule {
+    match app-id=r#"^org\.gnome\.Calculator$"#
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
     match app-id=r#"^blueman-manager$"#
     match app-id=r#"^org\.gnome\.Nautilus$"#
-    match app-id=r#"^steam$"#
     match app-id=r#"^xdg-desktop-portal$"#
     open-floating true
+}
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
 }
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
@@ -200,14 +248,6 @@ window-rule {
     draw-border-with-background false
 }
 window-rule {
-    match is-active=false
-    opacity 0.9
-}
-window-rule {
-    match app-id="brave"
-    opacity 1.0
-}
-window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
     open-floating true
@@ -215,6 +255,7 @@ window-rule {
 // Open dms windows as floating by default
 window-rule {
     match app-id=r#"org.quickshell$"#
+    match app-id=r#"com.danklinux.dms$"#
     open-floating true
 }
 debug {
@@ -236,6 +277,5 @@ include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
-include "dms/cursor.kdl"
 include "dms/outputs.kdl"
-include "dms/layout.kdl"
+include "dms/cursor.kdl"

@@ -63,5 +63,7 @@ The `install.sh` script orchestrates the setup process by executing modular scri
 ## Further Documentation
 
 [Niri Documentation](https://niri-wm.github.io/niri/)
+
 [DMS (Dank Linux) Docs](https://danklinux.com/docs/)
+
 [Fedora Project](https://fedoraproject.org/)

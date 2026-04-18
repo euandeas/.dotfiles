@@ -1,30 +1,37 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
-set -eEo pipefail
-
-export DOTS_INSTALL="$HOME/.dotfiles/install"
-
-if ! sudo -n true 2>/dev/null; then
+if [ "$EUID" -ne 0 ]; then
     echo "This script requires sudo privileges."
-    if ! sudo -v; then
-        echo "Failed to obtain sudo privileges."
-        exit 1
-    fi
+    exec sudo "$0" "$@"
 fi
 
-sudo dnf install -yq gum
+# track original user for commands that must run unprivileged
+REAL_USER="${SUDO_USER:-$USER}"
+REAL_HOME=$(getent passwd "$REAL_USER" | cut -d: -f6)
+export REAL_USER REAL_HOME
+export DOTS_INSTALL="$REAL_HOME/.dotfiles/install"
 
-new_hostname=$(gum input --placeholder "Enter the new hostname")
-sudo hostnamectl set-hostname "$new_hostname"
+clear
 
-git_name=$(gum input --placeholder "Enter git username")
-git config --global user.name "$git_name"
+source "$DOTS_INSTALL/util.sh"
 
-git_email=$(gum input --placeholder "Enter git email")
-git config --global user.email "$git_email"
+dnf install -yq gum
 
-# Install
+clear
+
+if gum confirm "Set hostname?"; then
+    new_hostname=$(gum input --placeholder "Enter the new hostname")
+    hostnamectl set-hostname "$new_hostname"
+fi
+
+if gum confirm "Configure git?"; then
+    git_name=$(gum input --placeholder "Enter git username")
+    sudo -u "$REAL_USER" git config --global user.name "$git_name"
+
+    git_email=$(gum input --placeholder "Enter git email")
+    sudo -u "$REAL_USER" git config --global user.email "$git_email"
+fi
+
 source "$DOTS_INSTALL/sysconf/all.sh"
 source "$DOTS_INSTALL/userconf/all.sh"
 
@@ -32,3 +39,4 @@ gum style \
   --foreground 2 \
   --bold \
   "Installation completed"
+echo "Log: $LOG_FILE"

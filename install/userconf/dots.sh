@@ -1,17 +1,9 @@
-#!/bin/bash
+# symlink dotfiles via stow and rebuild font cache
 
-# -----------------------------
-# Stow Dotfiles
-# -----------------------------
-stow --adopt -v */
-git restore . || true
+# stow dotfiles
+cd "$REAL_HOME/.dotfiles"
+sudo -u "$REAL_USER" stow --adopt -v */
+sudo -u "$REAL_USER" git -C "$REAL_HOME/.dotfiles" restore . || true
 
-# -----------------------------
-# Font Cache
-# -----------------------------
-fc-cache -fv
-
-gum style \
-  --foreground 2 \
-  --bold \
-  "Dotfiles installed"
+# rebuild font cache
+sudo -u "$REAL_USER" fc-cache -fv

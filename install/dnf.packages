@@ -6,6 +6,7 @@ btop
 eza
 fastfetch
 fzf
+gnome-keyring
 libGLES
 mise
 nautilus
@@ -14,6 +15,5 @@ papirus-icon-theme
 starship
 stow
 syncthing
-tailscale
 zed
 zoxide

@@ -1,23 +1,16 @@
-#!/bin/bash
+# DNF performance tuning and automatic updates
 
-# -----------------------------
-# Optimize DNF package manager for faster downloads and efficient updates
-# -----------------------------
-echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
-sudo dnf install dnf-plugins-core -yq
+# parallel downloads
+if ! grep -q '^max_parallel_downloads' /etc/dnf/dnf.conf; then
+    echo "max_parallel_downloads=10" | tee -a /etc/dnf/dnf.conf > /dev/null
+fi
+dnf install dnf-plugins-core -yq
 
-# -----------------------------
-# Enable and configure automatic system updates to enhance security and stability
-# -----------------------------
-sudo dnf install dnf-automatic -yq
-sudo mkdir -p /etc/dnf/
-sudo tee /etc/dnf/automatic.conf >/dev/null <<EOF
+# automatic updates
+dnf install dnf-automatic -yq
+mkdir -p /etc/dnf/
+tee /etc/dnf/automatic.conf >/dev/null <<EOF
 [commands]
 apply_updates=yes
 EOF
-sudo systemctl enable --now dnf-automatic.timer
-
-gum style \
-  --foreground 2 \
-  --bold \
-  "DNF settings applied"
+systemctl enable --now dnf-automatic.timer

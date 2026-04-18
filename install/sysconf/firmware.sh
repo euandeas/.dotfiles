@@ -1,15 +1,8 @@
-#!/bin/bash
+# firmware updates via fwupdmgr
 
-# -----------------------------
-# Update firmware
-# -----------------------------
+# fwupdmgr returns non-zero when no updates are available
 set +e
-sudo fwupdmgr refresh --force
-sudo fwupdmgr get-updates
-sudo fwupdmgr update
+fwupdmgr refresh --force
+fwupdmgr get-updates
+fwupdmgr update
 set -e
-
-gum style \
-  --foreground 2 \
-  --bold \
-  "Firmware updated"

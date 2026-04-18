@@ -1,35 +1,24 @@
-#!/bin/bash
+# packages from dnf and flatpak package lists
 
-# -----------------------------
-# DNF SPECIFIC REPOS
-# -----------------------------
-sudo dnf config-manager addrepo --overwrite --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf config-manager addrepo --overwrite --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.3-1.noarch.rpm"
-sudo dnf install ./protonvpn-stable-release-1.0.3-1.noarch.rpm -yq
-rm ./protonvpn-stable-release-1.0.3-1.noarch.rpm
-sudo dnf makecache --refresh
+# third-party repos
+dnf config-manager addrepo --overwrite --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
+dnf config-manager addrepo --overwrite --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+dnf makecache --refresh
 
-
-# -----------------------------
-# DNF
-# -----------------------------
-sudo dnf install -yq $(grep -vE '^\s*#|^\s*$' "$DOTS_INSTALL/dnf.packages")
-sudo dnf install gh --repo gh-cli -yq
+# dnf packages
+mapfile -t pkgs < <(grep -vE '^\s*#|^\s*$' "$DOTS_INSTALL/dnf.packages")
+if ((${#pkgs[@]} > 0)); then
+    dnf install -yq "${pkgs[@]}"
+fi
+dnf install gh --repo gh-cli -yq
 
 if gum confirm "Install tailscale?"; then
-    sudo dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-    sudo systemctl enable --now tailscaled
+    dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    dnf install -yq tailscale
+    systemctl enable --now tailscaled
 fi
 
-# -----------------------------
-# Flatpak
-# -----------------------------
+# flatpak packages
 while read -r app; do
   flatpak install -y --noninteractive flathub "$app"
 done < "$DOTS_INSTALL/flatpak.packages"
-
-gum style \
-  --foreground 2 \
-  --bold \
-  "Base packages installed"

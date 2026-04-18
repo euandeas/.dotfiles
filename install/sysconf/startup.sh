@@ -1,39 +1,32 @@
-#!/bin/bash
+# boot configuration: grub, plymouth splash, and greetd auto-login
 
-# -----------------------------
-# Skip GRUB & NetworkManager
-# -----------------------------
-sudo grub2-editenv - set menu_auto_hide=1
-sudo systemctl disable NetworkManager-wait-online.service
+# hide grub menu, skip network wait on boot
+grub2-editenv - set menu_auto_hide=1
+systemctl disable NetworkManager-wait-online.service
 
-# -----------------------------
-# Plymouth Setup
-# -----------------------------
-sudo dnf install -yq plymouth-system-theme
-sudo sed -i \
+# plymouth boot splash
+dnf install -yq plymouth-system-theme
+sed -i \
   -e 's/^BackgroundStartColor=.*/BackgroundStartColor=0x100f0f/' \
   -e 's/^BackgroundEndColor=.*/BackgroundEndColor=0x100f0f/' \
   -e 's/^ProgressBarBackgroundColor=.*/ProgressBarBackgroundColor=0x282726/' \
   -e 's/^ProgressBarForegroundColor=.*/ProgressBarForegroundColor=0xcecdc3/' \
   "/usr/share/plymouth/themes/spinner/spinner.plymouth"
-sudo plymouth-set-default-theme -R spinner
+plymouth-set-default-theme -R spinner
 
-# -----------------------------
-# Greetd Autologin
-# -----------------------------
-sudo dnf copr enable avengemedia/danklinux -y
-sudo dnf install dms-greeter -yq
-dms greeter enable
-dms greeter sync
+# greetd auto-login to niri
+dnf copr enable avengemedia/danklinux -y
+dnf install dms-greeter -yq
+echo "$REAL_USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/tmp-install
+sudo -u "$REAL_USER" dms greeter enable
+sudo -u "$REAL_USER" dms greeter sync
+rm -f /etc/sudoers.d/tmp-install
 
-sudo tee -a /etc/greetd/config.toml >/dev/null <<'EOF'
+if ! grep -q '^\[initial_session\]' /etc/greetd/config.toml; then
+    tee -a /etc/greetd/config.toml >/dev/null <<EOF
 
 [initial_session]
 command = "niri-session"
-user = "euandeas"
+user = "$REAL_USER"
 EOF
-
-gum style \
-  --foreground 2 \
-  --bold \
-  "Startup configuration applied"
+fi

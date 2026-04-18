@@ -12,7 +12,7 @@ if ((${#pkgs[@]} > 0)); then
 fi
 dnf install gh --repo gh-cli -yq
 
-if gum confirm "Install tailscale?"; then
+if [[ -n "${INSTALL_TAILSCALE:-}" ]]; then
     dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     dnf install -yq tailscale
     systemctl enable --now tailscaled

@@ -15,28 +15,25 @@ clear
 
 source "$DOTS_INSTALL/util.sh"
 
-dnf install -yq gum
-
-clear
-
-if gum confirm "Set hostname?"; then
-    new_hostname=$(gum input --placeholder "Enter the new hostname")
+if confirm "Set hostname?"; then
+    clear
+    new_hostname=$(prompt_input "Enter the new hostname")
     hostnamectl set-hostname "$new_hostname"
 fi
+clear
 
-if gum confirm "Configure git?"; then
-    git_name=$(gum input --placeholder "Enter git username")
+if confirm "Configure git?"; then
+    clear
+    git_name=$(prompt_input "Enter git username")
     sudo -u "$REAL_USER" git config --global user.name "$git_name"
-
-    git_email=$(gum input --placeholder "Enter git email")
+    clear
+    git_email=$(prompt_input "Enter git email")
     sudo -u "$REAL_USER" git config --global user.email "$git_email"
 fi
+clear
 
 source "$DOTS_INSTALL/sysconf/all.sh"
 source "$DOTS_INSTALL/userconf/all.sh"
 
-gum style \
-  --foreground 2 \
-  --bold \
-  "Installation completed"
+success "Installation completed"
 echo "Log: $LOG_FILE"

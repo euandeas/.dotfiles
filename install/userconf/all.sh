@@ -1,14 +1,14 @@
-gum style --foreground 3 "▸ Installing base packages"
-if gum confirm "Install tailscale?"; then
+info "▸ Installing base packages"
+if confirm "Install tailscale?"; then
     export INSTALL_TAILSCALE=1
 fi
 run_logged "$DOTS_INSTALL/userconf/base_packages.sh"
 
-gum style --foreground 3 "▸ Installing gaming packages"
-if gum confirm "Install Gaming Packages?"; then
+if confirm "Install Gaming Packages?"; then
+    info "▸ Installing gaming packages"
     export INSTALL_GAMING=1
 fi
 run_logged "$DOTS_INSTALL/userconf/gaming_packages.sh"
 
-gum style --foreground 3 "▸ Stowing dotfiles"
+info "▸ Stowing dotfiles"
 run_logged "$DOTS_INSTALL/userconf/dots.sh"

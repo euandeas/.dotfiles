@@ -12,3 +12,6 @@ run_logged "$DOTS_INSTALL/userconf/gaming_packages.sh"
 
 info "▸ Stowing dotfiles"
 run_logged "$DOTS_INSTALL/userconf/dots.sh"
+
+info "▸ Setting up greeter"
+run_logged "$DOTS_INSTALL/userconf/greeter.sh"

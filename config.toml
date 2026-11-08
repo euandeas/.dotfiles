@@ -23,7 +23,6 @@ dotfiles.root = "~/.dotfiles"
 "dnf:bat" = "latest"
 "dnf:btop" = "latest"
 "dnf:eza" = "latest"
-"dnf:fastfetch" = "latest"
 "dnf:fzf" = "latest"               # only a weak dep of just on Hafnium; .bashrc needs it
 "dnf:syncthing" = "latest"
 "dnf:zoxide" = "latest"

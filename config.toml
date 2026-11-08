@@ -17,7 +17,7 @@
 dotfiles.root = "~/.dotfiles"
 
 # ---------------------------------------------------------------------------
-# Packages (Hafnium already ships niri, DMS, Ghostty, Dux Files, mise, flatpak, codecs...)
+# Packages (Hafnium already ships niri, DMS, Ghostty, Dux Files, mise, flatpak, codecs, Papirus, Starship...)
 # ---------------------------------------------------------------------------
 [bootstrap.packages]
 "dnf:bat" = "latest"
@@ -25,10 +25,8 @@ dotfiles.root = "~/.dotfiles"
 "dnf:eza" = "latest"
 "dnf:fastfetch" = "latest"
 "dnf:fzf" = "latest"               # only a weak dep of just on Hafnium; .bashrc needs it
-"dnf:papirus-icon-theme" = "latest"
 "dnf:syncthing" = "latest"
 "dnf:zoxide" = "latest"
-"dnf:starship" = "latest"          # terra (enabled by Hafnium)
 "dnf:zed" = "latest"               # terra: the editor
 "dnf:zed-cli" = "latest"           # terra: the `zed` command and app-menu entry
 "dnf:brave-browser" = "latest"     # system/repos/brave-browser.repo

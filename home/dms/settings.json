@@ -3,7 +3,7 @@
   "currentThemeCategory": "custom",
   "customThemeFile": "/usr/share/hafnium/themes/flexoki.json",
   "matugenScheme": "scheme-fidelity",
-  "widgetBackgroundColor": "sc",
+  "widgetBackgroundColor": "default",
   "barElevationEnabled": false,
   "blurBorderOpacity": 0,
   "blurWallpaperOnOverview": true,
@@ -250,7 +250,9 @@
       "maximizeDetection": true,
       "shadowIntensity": 0,
       "followInterfaceStyle": false,
-      "widgetFollowInterfaceStyle": false
+      "widgetFollowInterfaceStyle": false,
+      "attachToScreenEdge": false,
+      "widgetStyle": "pills"
     }
   ],
   "builtInPluginSettings": {
@@ -284,6 +286,7 @@
       "showOnLastDisplay": false,
       "position": 1,
       "mode": "compact",
+      "middleClickAction": "close",
       "taskbarAlign": "center",
       "widgetExpansion": "popout",
       "iconSize": 40,
@@ -603,5 +606,7 @@
         "syncPositionAcrossScreens": true
       }
     }
-  ]
+  ],
+  "avatarRing": "none",
+  "widgetColorMode": "default"
 }

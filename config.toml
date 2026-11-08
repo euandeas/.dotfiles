@@ -30,7 +30,8 @@ dotfiles.root = "~/.dotfiles"
 "dnf:syncthing" = "latest"
 "dnf:zoxide" = "latest"
 "dnf:starship" = "latest"          # terra (enabled by Hafnium)
-"dnf:zed-cli" = "latest"           # terra; provides /usr/bin/zed (the "zed" package is only the backend)
+"dnf:zed" = "latest"               # terra: the editor
+"dnf:zed-cli" = "latest"           # terra: the `zed` command and app-menu entry
 "dnf:brave-browser" = "latest"     # system/repos/brave-browser.repo
 "dnf:gh" = "latest"                # system/repos/gh-cli.repo
 

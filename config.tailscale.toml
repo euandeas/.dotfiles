@@ -1,0 +1,7 @@
+# mise -E tailscale bootstrap
+[bootstrap.packages]
+"dnf:tailscale" = "latest"
+
+[bootstrap.services.tailscaled]
+state = "running"
+enabled = true

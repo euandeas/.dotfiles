@@ -1,0 +1,90 @@
+# euandeas: personal setup on top of Hafnium.
+#
+# Bootstrap a fresh Hafnium install with:
+#   mise bootstrap --from https://github.com/euandeas/.dotfiles.git --from-dir ~/.dotfiles --config-dir . --force-dotfiles
+# (or `hjust bootstrap-dotfiles euandeas/.dotfiles`)
+#
+# --config-dir . links ~/.config/mise to this checkout, so this file is mise's
+# *global* config. Hafnium's defaults live in /etc/mise/conf.d/hafnium.toml (the
+# system layer). Entries here with the same target replace Hafnium's.
+#
+# Optional extras live in config environments (config.<env>.toml):
+#   mise -E gaming bootstrap            Steam, Bottles, Prism Launcher
+#   mise -E tailscale bootstrap         Tailscale
+#   mise -E gaming,tailscale bootstrap  both (or export MISE_ENV=gaming,tailscale)
+
+[settings]
+dotfiles.root = "~/.dotfiles"
+
+# ---------------------------------------------------------------------------
+# Packages (Hafnium already ships niri, DMS, Ghostty, Nautilus, mise, flatpak, codecs...)
+# ---------------------------------------------------------------------------
+[bootstrap.packages]
+"dnf:bat" = "latest"
+"dnf:btop" = "latest"
+"dnf:eza" = "latest"
+"dnf:fastfetch" = "latest"
+"dnf:fzf" = "latest"               # only a weak dep of just on Hafnium; .bashrc needs it
+"dnf:neovim" = "latest"
+"dnf:papirus-icon-theme" = "latest"
+"dnf:syncthing" = "latest"
+"dnf:zoxide" = "latest"
+"dnf:starship" = "latest"          # terra (enabled by Hafnium)
+"dnf:zed-cli" = "latest"           # terra; provides /usr/bin/zed (the "zed" package is only the backend)
+"dnf:brave-browser" = "latest"     # system/repos/brave-browser.repo
+"dnf:gh" = "latest"                # system/repos/gh-cli.repo
+
+"flatpak:dev.vencord.Vesktop" = "latest"
+"flatpak:com.github.tchx84.Flatseal" = "latest"
+"flatpak:org.localsend.localsend_app" = "latest"
+"flatpak:md.obsidian.Obsidian" = "latest"
+"flatpak:org.libreoffice.LibreOffice" = "latest"
+"flatpak:com.spotify.Client" = "latest"
+"flatpak:org.gtk.Gtk3theme.adw-gtk3" = "latest"
+"flatpak:org.gtk.Gtk3theme.adw-gtk3-dark" = "latest"
+
+# ---------------------------------------------------------------------------
+# Repos and services. Hafnium already sets up RPM Fusion, Terra, codecs, encrypted
+# DNS, dnf tuning, automatic updates and the quiet boot.
+# ---------------------------------------------------------------------------
+[bootstrap.files."/etc/yum.repos.d/brave-browser.repo"]
+source = "system/repos/brave-browser.repo"
+phase = "pre-packages"
+
+[bootstrap.files."/etc/yum.repos.d/gh-cli.repo"]
+source = "system/repos/gh-cli.repo"
+phase = "pre-packages"
+
+[bootstrap.files."/etc/firewalld/services/localsend.xml"]
+source = "system/firewalld/localsend.xml"
+
+[bootstrap.services.syncthing]
+scope = "user"
+state = "running"
+enabled = true
+
+[bootstrap.hooks.post-dotfiles]
+description = "Rebuild the font cache; open firewalld for Syncthing and LocalSend"
+run = ["fc-cache -f", "bash ~/.dotfiles/system/scripts/firewall.sh"]
+
+[tasks.bootstrap]
+description = "Set git identity if missing"
+run = "bash ~/.dotfiles/system/scripts/git-identity.sh"
+
+# ---------------------------------------------------------------------------
+# Dotfiles (symlinks into this repo)
+# ---------------------------------------------------------------------------
+[dotfiles]
+"~/.bashrc" = { source = "home/bashrc" }
+
+# Replaces Hafnium's Ghostty seed
+"~/.config/ghostty/config" = { source = "home/ghostty/config" }
+
+# Replaces Hafnium's empty local.kdl. Hafnium's managed config.kdl includes it last.
+"~/.config/niri/local.kdl" = { source = "home/niri/local.kdl" }
+
+# My full DMS layout. Replaces Hafnium's seed; the Flexoki theme and wallpapers come from Hafnium.
+"~/.config/dms/settings.json" = { source = "home/dms/settings.json" }
+"~/.config/zed/settings.json" = { source = "home/zed/settings.json" }
+
+"~/.local/share/fonts" = { source = "home/fonts", mode = "symlink-each" }

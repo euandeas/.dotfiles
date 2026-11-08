@@ -8,7 +8,7 @@ My setup on top of [Hafnium](https://github.com/euandeas/hafnium), declared with
 On a fresh Hafnium install:
 
 ```sh
-hjust bootstrap-dotfiles euandeas/.dotfiles
+hafnium bootstrap-dotfiles euandeas/.dotfiles
 ```
 
 Extras:

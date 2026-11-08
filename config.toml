@@ -2,7 +2,7 @@
 #
 # Bootstrap a fresh Hafnium install with:
 #   mise bootstrap --from https://github.com/euandeas/.dotfiles.git --from-dir ~/.dotfiles --config-dir . --force-dotfiles
-# (or `hjust bootstrap-dotfiles euandeas/.dotfiles`)
+# (or `hafnium bootstrap-dotfiles euandeas/.dotfiles`)
 #
 # --config-dir . links ~/.config/mise to this checkout, so this file is mise's
 # *global* config. Hafnium's defaults live in /etc/mise/conf.d/hafnium.toml (the

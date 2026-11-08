@@ -30,6 +30,12 @@ mise -E tailscale bootstrap   # Tailscale
 This repo becomes mise's global config, so it overrides Hafnium's defaults wherever
 both set the same file.
 
+## Checks
+
+[`.github/check.sh`](.github/check.sh) runs on every push. It checks that the configs
+parse, that every dotfile applies, that `local.kdl` is valid niri on top of Hafnium's
+config, and that the scripts pass shellcheck. Run it locally with `.github/check.sh ../hdots`.
+
 ## Updating
 
 ```sh

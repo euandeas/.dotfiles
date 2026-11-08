@@ -3,6 +3,7 @@
 # firewalld ships the syncthing service; localsend comes from system/firewalld/localsend.xml
 # (installed to /etc/firewalld/services by [bootstrap.files]). Safe to re-run.
 set -euo pipefail
+[[ -z "${DOTFILES_CHECK:-}" ]] || exit 0   # set by .github/check.sh
 command -v firewall-cmd >/dev/null || exit 0
 systemctl is-active --quiet firewalld || exit 0
 

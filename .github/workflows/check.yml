@@ -1,0 +1,33 @@
+name: Check
+
+# Catches mistakes before `mise bootstrap` does: configs parse, every dotfile
+# applies, local.kdl is valid niri on top of Hafnium's config, scripts lint.
+# See .github/check.sh.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    container:
+      image: registry.fedoraproject.org/fedora:45
+    steps:
+      - name: Install tools
+        run: |
+          dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+          dnf install -y --setopt=install_weak_deps=False git-core mise niri ShellCheck
+
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Checkout hdots
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/hdots
+          path: .hdots
+
+      - name: Check
+        run: .github/check.sh .hdots

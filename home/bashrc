@@ -107,4 +107,10 @@ set colored-stats on
 EOF
 
 export BAT_THEME=ansi
-export EDITOR="zed"
+# Zed in the desktop (--wait so git, sudoedit etc. wait for the file to close),
+# vi on a TTY or over SSH
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+  export EDITOR="zed --wait"
+else
+  export EDITOR="vi"
+fi

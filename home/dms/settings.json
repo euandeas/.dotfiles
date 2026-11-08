@@ -150,7 +150,7 @@
     }
   },
   "fontFamily": "Adwaita Sans",
-  "monoFontFamily": "CommitMono",
+  "monoFontFamily": "CommitMono Nerd Font Mono",
   "acMonitorTimeout": 900,
   "acLockTimeout": 600,
   "lockBeforeSuspend": true,

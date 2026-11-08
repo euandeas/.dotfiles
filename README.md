@@ -24,7 +24,7 @@ mise -E tailscale bootstrap   # Tailscale
 |---|---|
 | [`config.toml`](config.toml) | packages, flatpaks, repos, services, dotfiles; ends by syncing the login screen to my DMS settings |
 | `config.gaming.toml`, `config.tailscale.toml` | the extras above |
-| [`home/`](home) | bash, Ghostty, niri `local.kdl`, DMS layout, Zed, fonts |
+| [`home/`](home) | bash, Ghostty, niri `local.kdl`, DMS layout, Zed |
 | [`system/`](system) | Brave and GitHub CLI repos, firewall rules for Syncthing and LocalSend, git identity prompt |
 
 This repo becomes mise's global config, so it overrides Hafnium's defaults wherever

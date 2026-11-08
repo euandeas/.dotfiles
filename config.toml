@@ -66,8 +66,8 @@ description = "Add Flathub for per-user flatpaks"
 run = "flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
 
 [bootstrap.hooks.post-dotfiles]
-description = "Rebuild the font cache; open firewalld for Syncthing and LocalSend"
-run = ["fc-cache -f", "bash ~/.dotfiles/system/scripts/firewall.sh"]
+description = "Open firewalld for Syncthing and LocalSend"
+run = "bash ~/.dotfiles/system/scripts/firewall.sh"
 
 [bootstrap.hooks.final]
 description = "Copy my DMS theme, wallpaper and settings to the login screen"
@@ -93,4 +93,3 @@ run = "bash ~/.dotfiles/system/scripts/git-identity.sh"
 "~/.config/dms/settings.json" = { source = "home/dms/settings.json" }
 "~/.config/zed/settings.json" = { source = "home/zed/settings.json" }
 
-"~/.local/share/fonts" = { source = "home/fonts", mode = "symlink-each" }

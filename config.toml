@@ -83,9 +83,6 @@ run = "bash ~/.dotfiles/system/scripts/git-identity.sh"
 [dotfiles]
 "~/.bashrc" = { source = "home/bashrc" }
 
-# Replaces Hafnium's Ghostty seed
-"~/.config/ghostty/config" = { source = "home/ghostty/config" }
-
 # Replaces Hafnium's empty local.kdl. Hafnium's managed config.kdl includes it last.
 "~/.config/niri/local.kdl" = { source = "home/niri/local.kdl" }
 

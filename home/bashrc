@@ -1,5 +1,11 @@
 # .bashrc
 
+# Hafnium and Fedora defaults: bash completion, colours and the Starship prompt
+# (all from /etc/profile.d). Fedora's own ~/.bashrc does the same.
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -14,11 +20,6 @@ shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
-
-# Autocompletion
-if [[ ! -v BASH_COMPLETION_VERSINFO && -f /usr/share/bash-completion/bash_completion ]]; then
-  source /usr/share/bash-completion/bash_completion
-fi
 
 # Ensure command hashing is off for mise
 set +h
@@ -63,10 +64,6 @@ alias gcad='git commit -a --amend'
 
 if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
-fi
-
-if command -v starship &> /dev/null; then
-  eval "$(starship init bash)"
 fi
 
 if command -v zoxide &> /dev/null; then

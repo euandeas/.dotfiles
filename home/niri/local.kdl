@@ -1,28 +1,10 @@
 // euandeas: niri overrides on top of Hafnium.
-// Included last by Hafnium's ~/.config/niri/config.kdl, so everything here wins.
+// Only what differs from Hafnium's defaults and from DMS's generated files in
+// ~/.config/niri/dms/ (outputs, mouse speed, gaps, borders and colours are set
+// from DMS settings). Included last by Hafnium's config.kdl, so it wins.
 
 input {
-    mouse {
-        accel-speed 0
-        accel-profile "flat"
-    }
     focus-follows-mouse max-scroll-amount="0%"
-}
-
-/-output "DP-1" {
-    mode "2560x1440@180.002"
-    position x=0 y=0
-    variable-refresh-rate on-demand=true
-}
-
-layout {
-    border {
-        off
-        width 4
-        active-color   "#707070"
-        inactive-color "#d0d0d0"
-        urgent-color   "#cc4444"
-    }
 }
 
 animations {
@@ -58,45 +40,17 @@ animations {
     }
 }
 
+// libadwaita apps draw 12px rounded corners; match them (DMS rounds the rest at 8px)
 window-rule {
     match app-id=r#"^org\.gnome\."#
-    draw-border-with-background false
     geometry-corner-radius 12
-    clip-to-geometry true
 }
 
-window-rule {
-    match app-id=r#"^gnome-control-center$"#
-    match app-id=r#"^pavucontrol$"#
-    match app-id=r#"^nm-connection-editor$"#
-    default-column-width { proportion 0.5; }
-    open-floating false
-}
-
-window-rule {
-    match app-id=r#"^org\.gnome\.Calculator$"#
-    match app-id=r#"^gnome-calculator$"#
-    match app-id=r#"^galculator$"#
-    match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^dev\.duxlabs\.files$"#
-    open-floating true
-}
-
+// Steam's notification toasts: bottom-right, without stealing focus
 window-rule {
     match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
     open-focused false
-}
-
-window-rule {
-    match app-id="zen"
-    match app-id="kitty"
-    draw-border-with-background false
-}
-
-window-rule {
-    match app-id="zoom"
-    open-floating true
 }
 
 // No Super+Tab: keep window switching on Alt

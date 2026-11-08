@@ -17,7 +17,7 @@
 dotfiles.root = "~/.dotfiles"
 
 # ---------------------------------------------------------------------------
-# Packages (Hafnium already ships niri, DMS, Ghostty, Nautilus, mise, flatpak, codecs...)
+# Packages (Hafnium already ships niri, DMS, Ghostty, Dux Files, mise, flatpak, codecs...)
 # ---------------------------------------------------------------------------
 [bootstrap.packages]
 "dnf:bat" = "latest"

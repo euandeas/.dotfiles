@@ -25,7 +25,6 @@ dotfiles.root = "~/.dotfiles"
 "dnf:eza" = "latest"
 "dnf:fastfetch" = "latest"
 "dnf:fzf" = "latest"               # only a weak dep of just on Hafnium; .bashrc needs it
-"dnf:neovim" = "latest"
 "dnf:papirus-icon-theme" = "latest"
 "dnf:syncthing" = "latest"
 "dnf:zoxide" = "latest"
@@ -35,14 +34,14 @@ dotfiles.root = "~/.dotfiles"
 "dnf:brave-browser" = "latest"     # system/repos/brave-browser.repo
 "dnf:gh" = "latest"                # system/repos/gh-cli.repo
 
-"flatpak:dev.vencord.Vesktop" = "latest"
-"flatpak:com.github.tchx84.Flatseal" = "latest"
-"flatpak:org.localsend.localsend_app" = "latest"
-"flatpak:md.obsidian.Obsidian" = "latest"
-"flatpak:org.libreoffice.LibreOffice" = "latest"
-"flatpak:com.spotify.Client" = "latest"
-"flatpak:org.gtk.Gtk3theme.adw-gtk3" = "latest"
-"flatpak:org.gtk.Gtk3theme.adw-gtk3-dark" = "latest"
+"flatpak-user:dev.vencord.Vesktop" = "latest"
+"flatpak-user:com.github.tchx84.Flatseal" = "latest"
+"flatpak-user:org.localsend.localsend_app" = "latest"
+"flatpak-user:md.obsidian.Obsidian" = "latest"
+"flatpak-user:org.libreoffice.LibreOffice" = "latest"
+"flatpak-user:com.spotify.Client" = "latest"
+"flatpak-user:org.gtk.Gtk3theme.adw-gtk3" = "latest"
+"flatpak-user:org.gtk.Gtk3theme.adw-gtk3-dark" = "latest"
 
 # ---------------------------------------------------------------------------
 # Repos and services. Hafnium already sets up RPM Fusion, Terra, codecs, encrypted
@@ -63,6 +62,10 @@ source = "system/firewalld/localsend.xml"
 scope = "user"
 state = "running"
 enabled = true
+
+[bootstrap.hooks.pre-packages]
+description = "Add Flathub for per-user flatpaks"
+run = "flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
 
 [bootstrap.hooks.post-dotfiles]
 description = "Rebuild the font cache; open firewalld for Syncthing and LocalSend"

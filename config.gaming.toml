@@ -1,5 +1,5 @@
 # mise -E gaming bootstrap
 [bootstrap.packages]
 "dnf:steam" = "latest"                          # rpmfusion-nonfree
-"flatpak:com.usebottles.bottles" = "latest"
-"flatpak:org.prismlauncher.PrismLauncher" = "latest"
+"flatpak-user:com.usebottles.bottles" = "latest"
+"flatpak-user:org.prismlauncher.PrismLauncher" = "latest"

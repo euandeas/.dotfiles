@@ -68,9 +68,9 @@ else
 fi
 
 echo "== lint"
-# .bashrc: SC2076 (Fedora's stock literal PATH match) and SC2164 are intentional
+# .bashrc: SC2076 (Fedora's stock literal PATH match) is intentional
 if shellcheck -S warning "$repo"/system/scripts/*.sh \
-    && shellcheck -S warning -s bash -e SC2076,SC2164 "$repo/home/bashrc"; then
+    && shellcheck -S warning -s bash -e SC2076 "$repo/home/bashrc"; then
     echo "lint: ok"
 else
     failed+=("lint")

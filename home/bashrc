@@ -12,7 +12,7 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
 fi
 export PATH
 
-# If not running interactively, don't do anything (leave this at the top of this file)
+# Everything below is for interactive shells only
 [[ $- != *i* ]] && return
 
 # History control
@@ -20,9 +20,6 @@ shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
-
-# Ensure command hashing is off for mise
-set +h
 
 # File system
 if command -v eza &> /dev/null; then
@@ -33,19 +30,6 @@ if command -v eza &> /dev/null; then
 fi
 
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
-
-if command -v zoxide &> /dev/null; then
-  alias cd="zd"
-  zd() {
-    if [ $# -eq 0 ]; then
-      builtin cd ~ && return
-    elif [ -d "$1" ]; then
-      builtin cd "$1"
-    else
-      z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
-    fi
-  }
-fi
 
 open() {
   dms open "$@"
@@ -66,42 +50,33 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
 
+# cd = zoxide: real paths work as usual, anything else jumps to a frequent
+# folder (`cd proj`); `cdi` picks one interactively
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init bash)"
+  eval "$(zoxide init bash --cmd cd)"
 fi
 
+# fzf: Ctrl+R history, Ctrl+T file paths, Alt+C cd, and ** completion
 if command -v fzf &> /dev/null; then
-  if [[ -f /usr/share/fzf/completion.bash ]]; then
-    source /usr/share/fzf/completion.bash
-  fi
-  if [[ -f /usr/share/fzf/key-bindings.bash ]]; then
-    source /usr/share/fzf/key-bindings.bash
-  fi
+  eval "$(fzf --bash)"
 fi
 
-bind -f /dev/stdin <<'EOF'
-set meta-flag on
-set input-meta on
-set output-meta on
-set convert-meta off
-set completion-ignore-case on
-set completion-prefix-display-length 2
-set show-all-if-ambiguous on
-set show-all-if-unmodified on
-
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"\e[C": forward-char
-"\e[D": backward-char
-
-set mark-symlinked-directories on
-set match-hidden-files off
-set page-completions off
-set completion-query-items 200
-set visible-stats on
-set skip-completed-text on
-set colored-stats on
-EOF
+# Readline: case-insensitive completion, list matches on the first Tab,
+# Up/Down search history for what's already typed.
+# (One bind per line: `bind -f /dev/stdin` with a heredoc reads nothing on bash 5.3.)
+bind 'set completion-ignore-case on'
+bind 'set completion-prefix-display-length 2'
+bind 'set show-all-if-ambiguous on'
+bind 'set show-all-if-unmodified on'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind 'set mark-symlinked-directories on'
+bind 'set match-hidden-files off'
+bind 'set page-completions off'
+bind 'set completion-query-items 200'
+bind 'set visible-stats on'
+bind 'set skip-completed-text on'
+bind 'set colored-stats on'
 
 export BAT_THEME=ansi
 # Zed in the desktop (--wait so git, sudoedit etc. wait for the file to close),

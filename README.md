@@ -22,7 +22,7 @@ mise -E tailscale bootstrap   # Tailscale
 
 | Path | What |
 |---|---|
-| [`config.toml`](config.toml) | packages, flatpaks, repos, services, dotfiles |
+| [`config.toml`](config.toml) | packages, flatpaks, repos, services, dotfiles; ends by syncing the login screen to my DMS settings |
 | `config.gaming.toml`, `config.tailscale.toml` | the extras above |
 | [`home/`](home) | bash, Ghostty, niri `local.kdl`, DMS layout, Zed, fonts |
 | [`system/`](system) | Brave and GitHub CLI repos, firewall rules for Syncthing and LocalSend, git identity prompt |

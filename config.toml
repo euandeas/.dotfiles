@@ -71,6 +71,10 @@ run = "flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/
 description = "Rebuild the font cache; open firewalld for Syncthing and LocalSend"
 run = ["fc-cache -f", "bash ~/.dotfiles/system/scripts/firewall.sh"]
 
+[bootstrap.hooks.final]
+description = "Copy my DMS theme, wallpaper and settings to the login screen"
+run = "DMS_PRIVESC=sudo dms-greeter sync -y"
+
 [tasks.bootstrap]
 description = "Set git identity if missing"
 run = "bash ~/.dotfiles/system/scripts/git-identity.sh"

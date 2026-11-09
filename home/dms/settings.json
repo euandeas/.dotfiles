@@ -608,5 +608,6 @@
     }
   ],
   "avatarRing": "none",
-  "widgetColorMode": "default"
+  "widgetColorMode": "default",
+  "mouseAccelProfile": "flat"
 }

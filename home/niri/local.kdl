@@ -1,7 +1,7 @@
-// euandeas: niri overrides on top of Hafnium.
-// Only what differs from Hafnium's defaults and from DMS's generated files in
+// euandeas: niri overrides on top of Kansora.
+// Only what differs from Kansora's defaults and from DMS's generated files in
 // ~/.config/niri/dms/ (outputs, mouse speed, gaps, borders and colours are set
-// from DMS settings). Included last by Hafnium's config.kdl, so it wins.
+// from DMS settings). Included last by Kansora's config.kdl, so it wins.
 
 input {
     focus-follows-mouse max-scroll-amount="0%"

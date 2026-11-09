@@ -1,6 +1,6 @@
 # .bashrc
 
-# Hafnium and Fedora defaults: bash completion, colours and the Starship prompt
+# Kansora and Fedora defaults: bash completion, colours and the Starship prompt
 # (all from /etc/profile.d). Fedora's own ~/.bashrc does the same.
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc

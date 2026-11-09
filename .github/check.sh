@@ -2,15 +2,15 @@
 # Check this repo before it reaches `mise bootstrap`:
 #   config     every config parses without warnings (base + gaming + tailscale)
 #   dotfiles   every [dotfiles] source exists and applies cleanly to an empty $HOME
-#   niri       home/niri/local.kdl on top of Hafnium's niri config passes `niri validate`
+#   niri       home/niri/local.kdl on top of Kansora's niri config passes `niri validate`
 #   lint       shellcheck on the scripts and .bashrc
 #
-#   .github/check.sh [hdots-checkout]
-# Without an hdots checkout, the niri check is skipped. Needs mise, niri, shellcheck.
+#   .github/check.sh [kdots-checkout]
+# Without an kdots checkout, the niri check is skipped. Needs mise, niri, shellcheck.
 set -uo pipefail
 
 repo="$(cd "$(dirname "$0")/.." && pwd)"
-hdots="${1:-}"
+kdots="${1:-}"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 failed=()
@@ -52,19 +52,19 @@ else
 fi
 
 echo "== niri"
-if [[ -n "$hdots" ]]; then
+if [[ -n "$kdots" ]]; then
     n="$work/niri" && mkdir -p "$n/cfg"
-    cp -a "$hdots/dots/niri" "$n/share"
-    sed -i "s|/usr/share/hafnium/dots/niri|$n/share|g" "$n/share/config.kdl"
+    cp -a "$kdots/dots/niri" "$n/share"
+    sed -i "s|/usr/share/kansora/dots/niri|$n/share|g" "$n/share/config.kdl"
     cp "$n/share/config.kdl" "$n/cfg/config.kdl"
     cp "$repo/home/niri/local.kdl" "$n/cfg/local.kdl"
     if niri validate -c "$n/cfg/config.kdl" >"$work/niri.log" 2>&1; then
-        echo "niri: local.kdl is valid on top of Hafnium's config"
+        echo "niri: local.kdl is valid on top of Kansora's config"
     else
         grep -vE 'optional include not found' "$work/niri.log"; failed+=("niri")
     fi
 else
-    echo "niri: skipped (no hdots checkout given)"
+    echo "niri: skipped (no kdots checkout given)"
 fi
 
 echo "== lint"

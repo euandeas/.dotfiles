@@ -1,12 +1,12 @@
-# euandeas: personal setup on top of Hafnium.
+# euandeas: personal setup on top of Kansora.
 #
-# Bootstrap a fresh Hafnium install with:
+# Bootstrap a fresh Kansora install with:
 #   mise bootstrap --from https://github.com/euandeas/.dotfiles.git --from-dir ~/.dotfiles --config-dir . --force-dotfiles
-# (or `hafnium bootstrap-dotfiles euandeas/.dotfiles`)
+# (or `kansora bootstrap-dotfiles euandeas/.dotfiles`)
 #
 # --config-dir . links ~/.config/mise to this checkout, so this file is mise's
-# *global* config. Hafnium's defaults live in /etc/mise/conf.d/hafnium.toml (the
-# system layer). Entries here with the same target replace Hafnium's.
+# *global* config. Kansora's defaults live in /etc/mise/conf.d/kansora.toml (the
+# system layer). Entries here with the same target replace Kansora's.
 #
 # Optional extras live in config environments (config.<env>.toml):
 #   mise -E gaming bootstrap            Steam, Bottles, Prism Launcher
@@ -17,13 +17,13 @@
 dotfiles.root = "~/.dotfiles"
 
 # ---------------------------------------------------------------------------
-# Packages (Hafnium already ships niri, DMS, Ghostty, Dux Files, mise, flatpak, codecs, Papirus, Starship...)
+# Packages (Kansora already ships niri, DMS, Ghostty, Dux Files, mise, flatpak, codecs, Papirus, Starship...)
 # ---------------------------------------------------------------------------
 [bootstrap.packages]
 "dnf:bat" = "latest"
 "dnf:btop" = "latest"
 "dnf:eza" = "latest"
-"dnf:fzf" = "latest"               # only a weak dep of just on Hafnium; .bashrc needs it
+"dnf:fzf" = "latest"               # only a weak dep of just on Kansora; .bashrc needs it
 "dnf:syncthing" = "latest"
 "dnf:zoxide" = "latest"
 "dnf:zed" = "latest"               # terra: the editor
@@ -41,7 +41,7 @@ dotfiles.root = "~/.dotfiles"
 "flatpak-user:org.gtk.Gtk3theme.adw-gtk3-dark" = "latest"
 
 # ---------------------------------------------------------------------------
-# Repos and services. Hafnium already sets up RPM Fusion, Terra, codecs, encrypted
+# Repos and services. Kansora already sets up RPM Fusion, Terra, codecs, encrypted
 # DNS, dnf tuning, automatic updates and the quiet boot.
 # ---------------------------------------------------------------------------
 [bootstrap.files."/etc/yum.repos.d/brave-browser.repo"]
@@ -82,10 +82,10 @@ run = "bash ~/.dotfiles/system/scripts/git-identity.sh"
 [dotfiles]
 "~/.bashrc" = { source = "home/bashrc" }
 
-# Replaces Hafnium's empty local.kdl. Hafnium's managed config.kdl includes it last.
+# Replaces Kansora's empty local.kdl. Kansora's managed config.kdl includes it last.
 "~/.config/niri/local.kdl" = { source = "home/niri/local.kdl" }
 
-# My full DMS layout. Replaces Hafnium's seed; the Flexoki theme and wallpapers come from Hafnium.
+# My full DMS layout. Replaces Kansora's seed; the Flexoki theme and wallpapers come from Kansora.
 "~/.config/dms/settings.json" = { source = "home/dms/settings.json" }
 "~/.config/zed/settings.json" = { source = "home/zed/settings.json" }
 

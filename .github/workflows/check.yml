@@ -1,7 +1,7 @@
 name: Check
 
 # Catches mistakes before `mise bootstrap` does: configs parse, every dotfile
-# applies, local.kdl is valid niri on top of Hafnium's config, scripts lint.
+# applies, local.kdl is valid niri on top of Kansora's config, scripts lint.
 # See .github/check.sh.
 
 on:
@@ -23,11 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Checkout hdots
+      - name: Checkout kdots
         uses: actions/checkout@v7
         with:
-          repository: ${{ github.repository_owner }}/hdots
-          path: .hdots
+          repository: ${{ github.repository_owner }}/kdots
+          path: .kdots
 
       - name: Check
-        run: .github/check.sh .hdots
+        run: .github/check.sh .kdots

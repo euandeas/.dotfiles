@@ -76,6 +76,10 @@ run = "DMS_PRIVESC=sudo dms-greeter sync -y"
 description = "Set git identity if missing"
 run = "bash ~/.dotfiles/system/scripts/git-identity.sh"
 
+[tasks.davinci]
+description = "Install or update DaVinci Resolve Studio and its FFmpeg encoder plugin"
+run = "bash ~/.dotfiles/system/scripts/davinci.sh"
+
 # ---------------------------------------------------------------------------
 # Dotfiles (symlinks into this repo)
 # ---------------------------------------------------------------------------
